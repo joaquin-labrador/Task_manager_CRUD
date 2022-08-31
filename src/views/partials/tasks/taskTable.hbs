@@ -1,0 +1,35 @@
+<div class="card card-body p-6 rounded-6 bg-secondary text-white">
+  <table>
+    <thead>
+      <th>N°</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Operations</th>
+    </thead>
+
+    <tbody>
+      {{#each tasks}}
+        <tr>
+          <td>{{@index}}</td>
+          <td><strong>{{title}}</strong></td>
+          <td>{{description}}</td>
+          <td>
+            {{#if done}}
+              <a
+                type="button"
+                class="btn btn-success"
+                href="v1.0/tasks/{{_id}}/toggleDone"
+              >Done</a>
+            {{else}}
+              <a
+                type="button"
+                class="btn btn-danger"
+                href="v1.0/tasks/{{_id}}/toggleDone"
+              >Undone</a>
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
