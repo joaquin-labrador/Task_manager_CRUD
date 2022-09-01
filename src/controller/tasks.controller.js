@@ -52,10 +52,15 @@ const updateTask = async (req, res) => {
   }
 };
 
+
 const updateTaskPost = async (req, res) => {
+  try{
   const { id } = req.params;
   await Task.findByIdAndUpdate(id, req.body);
   res.redirect("/apiTask/v1.0");
+  }catch(error){
+    return res.render("error", { errorMessage: error.message });
+  }
 };
 
 export default {
