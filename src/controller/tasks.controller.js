@@ -32,8 +32,20 @@ const taskToggleDone = async (req, res) => {
   }
 };
 
+const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Task.findByIdAndDelete(id);
+    res.redirect("/apiTask/v1.0");
+  } catch (error) {
+    return res.render("error", { errorMessage: error.message });
+  }
+}
+
+
 export default {
   getTasks,
   tasksAdd,
   taskToggleDone,
+  deleteTask,
 };
