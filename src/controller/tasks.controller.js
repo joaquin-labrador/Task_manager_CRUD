@@ -1,24 +1,35 @@
 import Task from "../models/Task.js";
 
-
 const getTasks = async (req, res) => {
-  const tasks = await Task.find().lean(); //lean() transform mongoDB object to JSON object
-
-  res.render("index.hbs", { tasks: tasks });
+  try {
+    const tasks = await Task.find().lean(); //lean() transform mongoDB object to JSON object
+    res.render("index", { tasks: tasks });
+  } catch (error) {
+    console.log({ error });
+    return res.render("error", { errorMessage: error.message });
+  }
 };
 
 const tasksAdd = async (req, res) => {
-  const task = Task(req.body);
-  await task.save();
-  res.redirect("/apiTask/v1.0");
+  try {
+    const task = Task(req.body);
+    await task.save();
+    res.redirect("/apiTask/v1.0");
+  } catch (error) {
+    return res.render("error", { errorMessage: error.message });
+  }
 };
 
 const taskToggleDone = async (req, res) => {
-  const { id } = req.params;
-  const task = await Task.findById(id);
-  task.done = !task.done; //if is true, set false, if is false, set true / (false = false) = true
-  await task.save();
-  res.redirect("/apiTask/v1.0");
+  try {
+    const { id } = req.params;
+    const task = await Task.findById(id);
+    task.done = !task.done; //if is true, set false, if is false, set true / (false = false) = true
+    await task.save();
+    res.redirect("/apiTask/v1.0");
+  } catch (error) {
+    return res.render("error", { errorMessage: error.message });
+  }
 };
 
 export default {
