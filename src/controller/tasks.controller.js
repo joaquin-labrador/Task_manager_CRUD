@@ -40,12 +40,29 @@ const deleteTask = async (req, res) => {
   } catch (error) {
     return res.render("error", { errorMessage: error.message });
   }
-}
+};
 
+const updateTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const task = await Task.findById(id).lean();
+    res.render("update", { task: task });
+  } catch (error) {
+    return res.render("error", { errorMessage: error.message });
+  }
+};
+
+const updateTaskPost = async (req, res) => {
+  const { id } = req.params;
+  await Task.findByIdAndUpdate(id, req.body);
+  res.redirect("/apiTask/v1.0");
+};
 
 export default {
   getTasks,
   tasksAdd,
   taskToggleDone,
   deleteTask,
+  updateTask,
+  updateTaskPost,
 };
