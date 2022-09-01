@@ -5,9 +5,10 @@ import express from "express";
 import { create } from "express-handlebars";
 import tasksRoutes from "./routes/tasks.routes.js";
 import aboutMeRoutes from "./routes/aboutme.routes.js";
+import errorHandler from "./middleware/404.js";
 
 const app = express();
-app.set("port", 3000 || process.env.PORT);
+app.set("port", 3001|| process.env.PORT);
 
 // settings path -> directorio de archivos: __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -37,8 +38,6 @@ app.use("/apiTask/v1.0", aboutMeRoutes);
 // public route
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use((req, res, next) => {
-  res.status(404).render("404");
-});
-
+// error handler
+app.use(errorHandler);
 export default app;
