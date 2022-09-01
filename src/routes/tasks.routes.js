@@ -9,4 +9,6 @@ router.get("/",tasksController.getTasks);
 
 router.get("/tasks/:id/toggleDone", tasksController.taskToggleDone);
 
+router.get("/tasks/:id/delete", tasksController.deleteTask);
+
 export default router;
