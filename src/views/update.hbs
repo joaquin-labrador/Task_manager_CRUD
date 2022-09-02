@@ -1,16 +1,21 @@
 <div class="container">
     <div class="row">
-        <div class="card card-body bg-dark">
-            <div class="text-light" style="padding: 2.5ch ">
-                <h2>Update task</h2>
-                <form form action="/apiTask/v1.0/tasks/{{task._id}}/update" method="POST">
-                    <label for="title">Task title:</label><br />
-                    <input type="text" name="title" placeholder="Title" value={{task.title}} id="title" /><br/>
-                    <label for="description">Task description:</label></br>
-                    <textarea name="description" placeholder="Description"  id="description"> {{task.description}}</textarea>
-                    <br />
-                    <button onclick="return confirm('Are you sure you want to update this task?')">Add</button>
-                </form>
+        <!--FORM-->
+        <div class="col-md-5 offset-md-3">
+            <div class="card card-body bg-dark">
+                <div class="card-body text-light">
+                    <h2>Update task</h2>
+                    <form form action="/apiTask/v1.0/tasks/{{task._id}}/update" method="POST">
+                        <label for="title">Task title:</label><br />
+                        <input class="form-control" type="text" name="title" placeholder="Title"
+                            value="{{task.title}}" /><br />
+                        <label for="description">Task description:</label></br>
+                        <textarea class="form-control" rows="3" name="description" placeholder="Description"
+                            id="description"> {{task.description}}</textarea>
+                        <br />
+                        <button onclick="return confirm('Are you sure you want to update this task?')">Add</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
