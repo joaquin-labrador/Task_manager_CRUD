@@ -20,15 +20,15 @@
         <td>{{description}}</td>
         <td>
           {{#if done}}
-          <a type="button" class="btn btn-success text-light  text-center btn-center"
-            href="v1.0/tasks/{{_id}}/toggleDone" aria-setsize="2">Done</a>
-          {{else}}
           <a type="button" class="btn btn-dark text-light text-center btn-center "
             href="v1.0/tasks/{{_id}}/toggleDone">Undone</a>
+          {{else}}
+
+          <a type="button" class="btn btn-success text-light  text-center btn-center"
+            href="v1.0/tasks/{{_id}}/toggleDone" aria-setsize="2">Done</a>
           {{/if}}
           <a onclick="return confirm('Are you sure you want to delete this task?')" type="button"
-            class="btn btn-danger text-light text-center btn-center"
-            href="v1.0/tasks/{{_id}}/delete">Delete</a>
+            class="btn btn-danger text-light text-center btn-center" href="v1.0/tasks/{{_id}}/delete">Delete</a>
           <a type="button" class="btn btn-primary text-light text-center btn-center"
             href="v1.0/tasks/{{_id}}/update">Update</a>
         </td>
